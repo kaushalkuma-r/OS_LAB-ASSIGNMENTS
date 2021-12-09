@@ -1,0 +1,32 @@
+Lab 5:  Handling Foreground and Background Processes.
+
+Extend the previous lab assignment with an additional specification.
+
+Specification: System commands with and without arguments in foreground or background
+
+All other commands (other than what user-defined commands like HIST) are treated as system commands like : ls, emacs, vi and so on.
+ The shell must be able to execute them either in the backgroud or in the foreground.
+
+--Foreground processes: For example, executing a "vi" command in the foreground implies that your shell will wait for this process to complete and regain control when this process exits.
+
+--Background processes: Any command invoked with "&" is treated as background command. This implies that your shell will spawn that process and doesn't wait for the process to exit.
+ It will keep taking user commands. If the background process  exits then the shell must display the appropriate message to the user.
+
+
+
+General notes
+
+1. Use exec family of commands to execute system commands. If the command cannot be run or returns an error it should be handled approiately. Look at perror.h for appropriate routines to 
+handle errors.
+
+2. Use fork() for creating child processes where needed and wait() for handling child processes
+
+3. Use signal handlers to process signals from exiting background processes. Marks will be deducted if proper signal handling is not done.
+
+4. You can use : uname, hostname, whomai commands to get the shell display working.  For respective header libraries use: man <cmd>
+
+5. The user can type the command anywhere in the command line i.e., by giving spaces, tabs etc. Your shell should be able to handle such scenarios appropriately. 
+
+6. Use pipe, dup, dup2, wait(), exit(status) for handling IPC of child and parent.
+
+7. Segmentation faults at the time of grading will be penalized.
